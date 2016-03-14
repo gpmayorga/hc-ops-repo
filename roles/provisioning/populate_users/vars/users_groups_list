@@ -1,0 +1,16 @@
+default_user: {{ first_time_username }}
+
+user_groups:
+  - name: superadmin
+    sudo_line: "%superadmin ALL=(ALL) NOPASSWD:ALL"
+
+
+users: {{users}}
+  guille:
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDfGN05sd1RyhaUAAo8RUy564tA5u6g90Pj3u2OKY43uhmTEkLwWQOiGTXLXhkOIlFjsF+wqReP2NnggA687ZRg8sQaJbpzcN15XwQfBbnM3rg70/YNvwfriQ4uWSnP0mrZSXip4K9FDjp45bFVT0P5GqAiX/fC7c+adnXhN5xCb6f+IsZuvePoRo7i0So1QH0RdNjYFznfu0xXBQZMnviVuF10QzmhNE3rDn4Es2lmYcUTS33ld6n1EkCD/xaA8GrCj7oLyRhxtmr7zz5Cbtf0tIhdspbgy/xNgoSTRu42PIhX7I/NbC7fR32TK6LzM6gwcEu3lk4DZN6rK4L5w3OVBXsXbuCJxSXgvaictMC7IAf2/pNO/Cw3qDmSMUfXfu7+tjgWReGgip3zxni/U/soY0sARk1MeNMwcfHw7reKnEEks1xKsDeyu+z1bedzZYa669m060L4W5F40Y5rHEY4JM1RHdUh9/IFzDj7gcDrx5/Xax6wQU9GQrxptEWU3zA8LPpzZMBePrMq3+H2LIGlhUXBS+jg28Ai2dW0+26HzbQygUziLlSqwLXL1e7/j6KcW26Wwz6itfNxFOzIp4IvXdFUXW6uCQLKNXYuZfjKVGoWoiTK1RvG3aPE1Pc/uXbOWMMWmR+jBDu6OtC2Uc111TumoXk4C6nmh8LyM70jfQ== guilermo@eldespertar.me"
+    groups: ['sudo']
+    server_group: ['debian']
+  admin:
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDfGN05sd1RyhaUAAo8RUy564tA5u6g90Pj3u2OKY43uhmTEkLwWQOiGTXLXhkOIlFjsF+wqReP2NnggA687ZRg8sQaJbpzcN15XwQfBbnM3rg70/YNvwfriQ4uWSnP0mrZSXip4K9FDjp45bFVT0P5GqAiX/fC7c+adnXhN5xCb6f+IsZuvePoRo7i0So1QH0RdNjYFznfu0xXBQZMnviVuF10QzmhNE3rDn4Es2lmYcUTS33ld6n1EkCD/xaA8GrCj7oLyRhxtmr7zz5Cbtf0tIhdspbgy/xNgoSTRu42PIhX7I/NbC7fR32TK6LzM6gwcEu3lk4DZN6rK4L5w3OVBXsXbuCJxSXgvaictMC7IAf2/pNO/Cw3qDmSMUfXfu7+tjgWReGgip3zxni/U/soY0sARk1MeNMwcfHw7reKnEEks1xKsDeyu+z1bedzZYa669m060L4W5F40Y5rHEY4JM1RHdUh9/IFzDj7gcDrx5/Xax6wQU9GQrxptEWU3zA8LPpzZMBePrMq3+H2LIGlhUXBS+jg28Ai2dW0+26HzbQygUziLlSqwLXL1e7/j6KcW26Wwz6itfNxFOzIp4IvXdFUXW6uCQLKNXYuZfjKVGoWoiTK1RvG3aPE1Pc/uXbOWMMWmR+jBDu6OtC2Uc111TumoXk4C6nmh8LyM70jfQ== guille_2016"
+    groups: ['sudo']
+    server_group: ['debian']    

@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Mark Stillwell
+  description: OwnCloud web service
+  license: GPLv2
+  min_ansible_version: 1.5
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+  categories:
+  - web
+# dependencies: 
+#   - marklee77.mariadb

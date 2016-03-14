@@ -1,0 +1,45 @@
+---
+
+
+- name: Create default groups
+  group: name={{item.name}} state=present
+  with_items: user_groups
+
+
+- name: get local users list
+  shell: ls /home/
+  register: local_users
+  tags:
+    - permissions
+    - delete
+    - debug
+
+- include: add_new_users.yml
+
+- name: Keeping consistency on Ubuntu's SSH keys
+  authorized_key: user=ubuntu key="{{ ubuntu_authorized_keys | join('\n') }}" exclusive=yes
+  tags: ubuntu
+  when:  ('bastion' not in ec2_tag_Name)
+
+- name: Add ubuntu key to bastion host
+  sudo: yes
+  authorized_key: user=ubuntu key="from=\"{{ authorized_ips | join(',') }}\" {{ops_key}} " exclusive=yes
+  when:  ('bastion' in ec2_tag_Name)
+  tags:
+    - ubuntu
+    - bastion
+
+- name: Delete automation key from bastion host
+  sudo: yes
+  lineinfile: regexp='(.*)ansible-workstation$' dest=/home/ubuntu/.ssh/authorized_keys state=absent
+  when:  ('bastion' in ec2_tag_Name)
+  tags:
+    - ubuntu
+    - bastion
+
+- name: Deploy sudores file
+  template: src=cl-sudoers-groups.j2 dest=/etc/sudoers.d/cl-sudo-groups mode=0440
+  tags: sudoers
+
+- include: delete_old_users.yml
+  tags: delete

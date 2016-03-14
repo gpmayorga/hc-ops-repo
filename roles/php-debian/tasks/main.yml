@@ -1,0 +1,4 @@
+---
+
+name: install php5
+apt: name=php5-fpm update_cache=yes state=latest

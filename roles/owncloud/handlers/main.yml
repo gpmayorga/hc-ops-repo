@@ -1,0 +1,33 @@
+---
+- name: restart php5-fpm
+  command: service php5-fpm restart
+  # service:
+  #   name: php5-fpm
+  #   command: service php5-fpm restart
+    # state: restarted
+
+- name: restart nginx
+  command: service nginx restart
+  # service:
+  #   name: nginx
+  #   command: service nginx restart
+    # state: restarted
+
+- name: update /srv/owncloud/config/autoconfig.php from template
+  template:
+    src: srv/owncloud/config/autoconfig.php
+    dest: /srv/owncloud/config/autoconfig.php
+    owner: owncloud
+    group: owncloud
+    mode: 0600
+
+- name: update /srv/owncloud/config/config.php from template
+  template:
+    src: srv/owncloud/config/config.php
+    dest: /srv/owncloud/config/config.php
+    owner: owncloud
+    group: owncloud
+    mode: 0600
+
+- name: initialize database
+  command: curl https://{{ owncloud_hostname }}:{{ owncloud_https_port }}

@@ -1,0 +1,19 @@
+---
+
+- name: Creating users for given server group
+  user: name={{item.key}} groups={{item.value.groups|join(',')}} append=yes shell=/bin/bash
+  with_dict: "{{users}}"
+  register: user_changed
+  when: ("{{inventory_hostname}}" in groups.{{item.value.server_group}} and (local_users.stdout.find('{{item.key}}')==-1)
+
+
+- name: Adding SSH key for given users
+  authorized_key: user={{item.key}} key="{{item.value.ssh_key}}"
+  with_dict: "{{users}}"
+  when: ("{{inventory_hostname}}" in groups.{{item.value.server_group}} and (local_users.stdout.find('{{item.key}}')==-1)
+
+
+- name: fix home folder permissions for new users
+  file: path=/home/"{{item.key}}"/ owner={{item.key}} group={{item.key}} recurse=yes
+  with_dict: "{{users}}"
+  when: ("{{inventory_hostname}}" in groups.{{item.value.server_group}} and (local_users.stdout.find('{{item.key}}')==-1)

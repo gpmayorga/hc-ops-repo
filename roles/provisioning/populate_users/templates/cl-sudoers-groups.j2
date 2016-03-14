@@ -1,0 +1,7 @@
+# Sudo directives for Cloudlock user groups
+
+{% for group in user_groups %}
+
+{{group.sudo_line}}
+
+{%endfor%}
