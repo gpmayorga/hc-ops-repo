@@ -1,0 +1,13 @@
+## Install owncloud node
+
+- hosts: default
+  user: debian
+  sudo: yes
+  roles:
+    - provisioning/minimal_packages
+    - provisioning/populate_users
+    - provisioning/sysconfig
+    # - nginx
+    # - php7
+    # - mysql
+    # - owncloud

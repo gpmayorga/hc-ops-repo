@@ -1,0 +1,3 @@
+debug_mode: false
+env: dev
+default_users: ['ec2-user', 'root', 'ubuntu', 'debian', 'admin', 'vagrant']

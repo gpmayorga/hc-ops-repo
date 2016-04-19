@@ -1,0 +1,7 @@
+Setup Vagrant:
+
+- Install vagrant
+- Install virtualbox or libvirt
+- Install libvirt plugin and dev packages
+- vagrant init
+- vagrant box add centos/7

@@ -1,0 +1,5 @@
+---
+
+- name: Copy SSH config
+  sudo: yes
+  copy: src=etc/ssh dest=/etc/

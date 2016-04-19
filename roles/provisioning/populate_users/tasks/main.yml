@@ -1,0 +1,19 @@
+---
+
+- name: Create default groups
+  group: name={{item.name}} state=present
+  with_items: user_groups
+
+
+- name: get local users list
+  shell: ls /home/
+  register: local_users
+
+- include: add_new_users.yml
+
+- name: Deploy sudores file
+  template: src=cl-sudoers-groups.j2 dest=/etc/sudoers.d/cl-sudo-groups mode=0440
+  tags: sudoers
+
+- include: delete_old_users.yml
+

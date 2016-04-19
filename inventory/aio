@@ -1,0 +1,3 @@
+
+[owncloud-nodes]
+owncloud-debian-aio.hispanube.me ansible_ssh_host=212.231.128.33

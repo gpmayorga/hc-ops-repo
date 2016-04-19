@@ -1,0 +1,12 @@
+# Vars
+
+base_packages_list: # CentOS !
+# Authentication:
+  - sudo
+  - openssh-server
+# Ops tools:
+  - nmap
+  - tcpdump
+  - screen
+  - net-tools
+  
