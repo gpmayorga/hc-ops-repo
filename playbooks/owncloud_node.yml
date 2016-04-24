@@ -2,7 +2,7 @@
 
 - hosts: default
   user: debian
-  sudo: yes
+  become: yes
   roles:
     - provisioning/minimal_packages
     - provisioning/populate_users

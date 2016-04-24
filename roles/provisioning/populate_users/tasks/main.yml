@@ -2,12 +2,13 @@
 
 - name: Create default groups
   group: name={{item.name}} state=present
-  with_items: user_groups
+  with_items: "{{user_groups}}"
 
 
 - name: get local users list
   shell: ls /home/
   register: local_users
+  tags: debug
 
 - include: add_new_users.yml
 

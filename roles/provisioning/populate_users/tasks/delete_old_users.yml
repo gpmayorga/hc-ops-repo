@@ -4,23 +4,24 @@
 - name: Make sure  users not listed for this env are removed.
   user: name={{item.key}} state=absent remove=yes
   with_dict: "{{users}}"
-  when: (local_users.stdout.find('{{item.key}}')!=-1) and ({{item.value.server_group}} not in group_names) and ('all' not in "{{item.value.server_group}}")
+  when: (local_users.stdout.find('{{item.key}}')==1) and ( "'{{item.value.server_group}}' not in group_names" or "'all' not in {{item.value.server_group}}")
+
 
 - name: Remove home directory
   file: state=absent dest=/home/{{item.key}}
   with_dict: "{{users}}"
-  when: (local_users.stdout.find('{{item.key}}')!=-1) and ({{item.value.server_group}} not in group_names) and ('all' not in "{{item.value.server_group}}")
+  when: (local_users.stdout.find('{{item.key}}')==1) and ("'{{item.value.server_group}}' not in group_names" or "'all' not in {{item.value.server_group}}")
 
 ## Delete other users present in the machine that are not in the users list (except 'ubuntu')
 
 - name: Remove any other users not present at all in the list
   user: name={{item}} state=absent remove=yes
-  with_items: local_users.stdout_lines
+  with_items: "{{ local_users.stdout_lines }}"
   when: ("{{item}}" not in "{{users}}") and ("{{item}}" not in "{{ default_users }}")
 
 
 - name: Remove home directory
   file: state=absent dest=/home/{{item}}
-  with_items: local_users.stdout_lines
+  with_items: "{{ local_users.stdout_lines }}"
   when: ("{{item}}" not in "{{users}}") and ("{{item}}" not in "{{ default_users }}")
 

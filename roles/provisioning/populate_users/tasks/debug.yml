@@ -1,8 +1,5 @@
 ---
 
-- name: new users to deploy
-
-  register:
 
 - name: debug1
   debug: msg="Creating user {{item.key}} with groups {{item.value.groups}}"
