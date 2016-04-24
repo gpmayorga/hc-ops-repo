@@ -1,7 +1,7 @@
 ---
 
+- name: install nginx repo
+  template: src=nginx.repo dest=/etc/yum.repos.d/ owner=root group=root mode=0644
+
 - name: install nginx
-  yum: pkg={{ item }} state=latest update_cache=yes
-  with_items: 
-    - 'epel-release'
-    - 'nginx'
+  yum: pkg=nginx update_cache=yes state=latest enablerepo=nginx

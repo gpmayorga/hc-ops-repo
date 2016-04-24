@@ -5,3 +5,4 @@ Setup Vagrant:
 - Install libvirt plugin and dev packages
 - vagrant init
 - vagrant box add centos/7
+- add your local user to libvirt group.

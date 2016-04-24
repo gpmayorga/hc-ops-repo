@@ -1,7 +1,6 @@
 ## Install owncloud node
 
-- hosts: default
-  user: debian
+- hosts: all
   become: yes
   roles:
     - provisioning/minimal_packages
@@ -10,4 +9,5 @@
     - nginx
     - php
     - mariadb
-    # - owncloud
+    - ssl-certs
+    - owncloud

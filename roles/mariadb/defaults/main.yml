@@ -1,8 +1,8 @@
 # roles/mariadb/defaults/main.yml
 ---
 
-mariadb_databases: [hispacloud,owncloud]
-mariadb_users: [root,owncloud]
-mariadb_root_password: 'ef&od7p,/zm9q4eGRTrtPVf6m8nRE'
+mariadb_databases: []
+mariadb_users: []
+mariadb_root_password: 'pass123'
 
 mariadb_bind_address: '127.0.0.1'

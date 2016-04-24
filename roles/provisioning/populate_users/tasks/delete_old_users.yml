@@ -1,7 +1,7 @@
 
 # Delete users in the user list that don't belong to this environment
 
-- name: Make sure  users not listed for this env are removed.
+- name: Make sure  users not listed for this server are removed.
   user: name={{item.key}} state=absent remove=yes
   with_dict: "{{users}}"
   when: (local_users.stdout.find('{{item.key}}')==1) and ( "'{{item.value.server_group}}' not in group_names" or "'all' not in {{item.value.server_group}}")
