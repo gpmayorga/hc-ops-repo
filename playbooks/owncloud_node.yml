@@ -7,7 +7,7 @@
     - provisioning/minimal_packages
     - provisioning/populate_users
     - provisioning/sysconfig
-    # - nginx
-    # - php7
-    # - mysql
+    - nginx
+    - php
+    - mariadb
     # - owncloud
