@@ -15,6 +15,7 @@ __php_packages:
   - php-pecl-apc
   - php-xml
   - php-xmlrpc
+
 __php_webserver_daemon: "nginx"
 
 __php_conf_path: /etc
@@ -24,3 +25,12 @@ __php_apc_conf_filename: 50-apc.ini
 __php_opcache_conf_filename: 10-opcache.ini
 __php_fpm_daemon: php-fpm
 __php_fpm_pool_conf_path: "/etc/php-fpm.d/www.conf"
+
+
+additional_repos:
+# 'name' needs to be the beggining name of the repo in /etc/yum.repo.d/repofile.repo
+#  It will be extended with *. All repos with 'repo_name*' will be disabled by default
+  - name: remi
+    url: http://rpms.famillecollet.com/enterprise/remi-release-{{ ansible_distribution_version.split('.')[0] }}.rpm
+  - name: epel
+    url: epel-release

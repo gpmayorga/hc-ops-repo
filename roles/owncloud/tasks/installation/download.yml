@@ -1,11 +1,43 @@
 ---
-- set_fact:
-    owncloud_download_path: "{% if owncloud_release_channel == 'testing' %}/testing{% endif %}"
+# - set_fact:
+#     owncloud_download_path: "{% if owncloud_release_channel == 'testing' %}/testing{% endif %}"
 
 - name: ensure owncloud is installed
-  unarchive:
-    src: "https://download.owncloud.org/community{{ owncloud_download_path }}/owncloud-{{ owncloud_version }}.tar.bz2"
-    dest: /var/www
+  unarchive:  
+    src: "{{ owncloud_tarball_url }}{{ owncloud_version }}.{{ owncloud_tarball_extension }}"
+    dest: "{{ owncloud_root_directory }}"
     copy: no
   when: "owncloud_installed != true or owncloud_installed_version != owncloud_version"
   register: owncloud_download
+
+# - name: rename owncloud directory
+#   command: mv {{ owncloud_root_directory }}/core-{{ owncloud_version }} {{ owncloud_root_directory }}/owncloud
+
+# - name: cleanup github files
+#   file:
+#     path: "{{ owncloud_root_directory }}/owncloud/{{ item }}"
+#     state: absent
+#   with_items: 
+#     - .idea
+#     - build
+#     - tests
+#     - .bowerrc
+#     - .gitignore
+#     - .gitmodules
+#     - .jshintrc
+#     - .mailmap
+#     - .mention-bot
+#     - .srcutinizer.yml
+#     - .travis.yml
+#     - autotest.sh
+#     - autotest-external.sh
+#     - autotest-hhvm.sh
+#     - autotest-js.sh
+#     - bower.json
+#     - buildjsdocs.sh
+#     - composer.json
+#     - CONTRIBUTING.md
+#     - COPYING-README
+#     - issue_template.md
+#     - README.md
+    

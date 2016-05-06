@@ -18,6 +18,14 @@
   notify: restart webserver
   when: php_use_managed_ini
 
+- name: Set permisions for error log
+  file:
+    path: "{{ php_error_logfile }}"
+    state: touch
+    owner: "{{ php_fpm_owner }}"
+    group: "{{ php_fpm_owner }}"
+  when: php_error_logfile is defined    
+
 - name: Place APC configuration file in place.
   template:
     src: apc.ini.j2

@@ -9,4 +9,6 @@ base_packages_list: # CentOS !
   - tcpdump
   - screen
   - net-tools
-  
+  - yum-utils
+  - vim
+  - git

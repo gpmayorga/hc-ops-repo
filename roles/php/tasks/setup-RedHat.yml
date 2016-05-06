@@ -1,8 +1,19 @@
 ---
+
+- name: Install additional repos (CentOS)
+  yum: name={{ item.url }} state=present
+  with_items: "{{ additional_repos }}"
+
+- name: Disable additional repos enabled by default
+  command: yum-config-manager --disable "{{ item.name }}"*
+  with_items: "{{ additional_repos }}"
+
 - name: Ensure PHP packages are installed.
   yum:
     name: "{{ item }}"
     state: installed
     enablerepo: "{{ php_enablerepo }}"
-  with_items: php_packages
+  with_items: "{{ php_packages }}"
   notify: restart webserver
+  tags: install-php
+  

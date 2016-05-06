@@ -1,0 +1,50 @@
+---
+# Only overrided variables should be here, 
+# otherwise, use defaults:
+
+php_enablerepo: extras,centosplus,epel,remi
+
+php_packages: 
+# Basic
+  - php
+  - php-cli
+  - php-devel
+  - php-common
+  - php-fpm  
+# Owncloud recommended:  
+  - php-gd
+  - php-json
+  - php-mysql
+  - php-curl
+  - php-intl
+  - php-mcrypt
+  - php-imagick
+  - php-posix
+  - php-xml
+
+# Set this to false if you're not using PHP with Apache/Nginx/etc.
+php_enable_webserver: true
+
+# PHP-FPM configuration.
+php_enable_php_fpm: true
+php_fpm_listen: "/var/run/php5-fpm.sock"
+
+
+php_memory_limit: "512M"
+php_date_timezone: "Europe/Madrid"
+
+php_error_logfile: "/var/log/php-errors.log"
+
+# Cache
+# opcache
+php_opcache_enabled_in_ini: false
+php_opcache_enable: "0"
+php_opcache_enable_cli: "0"
+
+# APC
+php_enable_apc: true
+php_apc_enabled_in_ini: true
+php_apc_cache_by_default: "1"
+php_apc_shm_size: "200M"
+php_apc_stat: "1"
+php_apc_enable_cli: "1"

@@ -3,3 +3,7 @@
 - name: Copy SSH config
   become: yes
   copy: src=etc/ssh dest=/etc/
+
+- name: setup hostname
+  hostname: name= {{ inventory_hostname }}
+  

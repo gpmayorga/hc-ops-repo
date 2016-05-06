@@ -1,0 +1,15 @@
+---
+- name: Install selinux python module
+  become: yes
+  yum: name=policycoreutils-python  state=latest
+
+- name: owncloud selinux policies
+  command: "{{ item }}"
+  with_items: 
+    - semanage fcontext -a -t httpd_sys_rw_content_t '{{ owncloud_root_directory }}/owncloud/data(/.*)'
+    - semanage fcontext -a -t httpd_sys_rw_content_t '{{ owncloud_root_directory }}/owncloud/config(/.*)'
+    - semanage fcontext -a -t httpd_sys_rw_content_t '{{ owncloud_root_directory }}/owncloud/apps(/.*)'
+    - restorecon -r '{{ owncloud_root_directory }}/owncloud/data'
+    - restorecon -r '{{ owncloud_root_directory }}/owncloud/config'
+    - restorecon -r '{{ owncloud_root_directory }}/owncloud/apps'    
+

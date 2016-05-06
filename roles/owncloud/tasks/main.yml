@@ -1,4 +1,5 @@
 ---
+- include: webserver/nginx.yml
 - include: check_installation.yml
 
 - include: installation/download.yml
@@ -6,7 +7,7 @@
 - include: installation/cron.yml
 - include: config.yml
 
-- include: webserver/nginx.yml
+
 
 - include: database/mysql.yml
   when: "owncloud_database_server == 'mysql'"
@@ -21,3 +22,6 @@
   when: "owncloud_installed == true and owncloud_installed_version != owncloud_version"
 
 - include: installation/apps.yml
+
+- include: selinux.yml
+  when: ansible_os_family == 'RedHat'

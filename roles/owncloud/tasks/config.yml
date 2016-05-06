@@ -4,24 +4,24 @@
     src: "{{ owncloud_restore_config }}"
     dest: /etc/owncloud/config.php
     remote_src: yes
-    owner: apache
-    group: apache
+    owner: "{{ owncloud_web_user }}"
+    group: "{{ owncloud_web_user }}"
     mode: 0640
-  when: "owncloud_restore_config and owncloud_installed != true"
+  when: "owncloud_restore_config is defined and owncloud_installed != true"
   register: owncloud_restored_config
 
 - name: ensure owncloud database connection is configured
   template:
     src: database.config.php.j2
     dest: /etc/owncloud/database.config.php
-    owner: apache
-    group: apache
+    owner: "{{ owncloud_web_user }}"
+    group: "{{ owncloud_web_user }}"
     mode: 0640
 
 - name: ensure owncloud is configured
   template:
     src: custom.config.php.j2
     dest: /etc/owncloud/custom.config.php
-    owner: apache
-    group: apache
+    owner: "{{ owncloud_web_user }}"
+    group: "{{ owncloud_web_user }}"
     mode: 0640

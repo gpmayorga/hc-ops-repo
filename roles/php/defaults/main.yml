@@ -13,6 +13,9 @@ php_fpm_pm_max_children: 50
 php_fpm_pm_start_servers: 5
 php_fpm_pm_min_spare_servers: 5
 php_fpm_pm_max_spare_servers: 5
+php_fpm_owner: nginx
+php_fpm_group: nginx
+php_fpm_mode: '0660'
 
 # The executable to run when calling PHP from the command line.
 php_executable: "php"
@@ -40,7 +43,6 @@ php_apc_enable_cli: "0"
 # If this is set to false, none of the following options will have any effect.
 # Any and all changes to /etc/php.ini will be your responsibility.
 php_use_managed_ini: true
-
 php_expose_php: "On"
 php_memory_limit: "256M"
 php_max_execution_time: "60"

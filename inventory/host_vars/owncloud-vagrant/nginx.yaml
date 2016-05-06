@@ -1,0 +1,6 @@
+webserver_user: 'nginx'
+ssl_certs_path: "/etc/ssl/{{ssl_certs_common_name}}"
+ssl_certs_common_name: "{{external_fqdn}}"
+ssl_certs_privkey_path: "{{ssl_certs_path}}/{{ssl_certs_common_name}}.key"
+ssl_certs_cert_path: "{{ssl_certs_path}}/{{ssl_certs_common_name}}.pem"
+ssl_certs_csr_path: "{{ssl_certs_path}}/{{ssl_certs_common_name}}.csr"
