@@ -7,8 +7,8 @@
     - provisioning/populate_users
     - provisioning/sysconfig
     - nginx
+    - mariadb    
     - php
-    - mariadb
     - ssl-certs
-    - owncloud
+    # - owncloud
     

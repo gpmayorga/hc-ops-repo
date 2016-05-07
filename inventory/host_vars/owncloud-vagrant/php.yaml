@@ -43,7 +43,7 @@ php_opcache_enable_cli: "0"
 
 # APC
 php_enable_apc: true
-php_apc_enabled_in_ini: true
+php_apc_enabled_in_ini: false
 php_apc_cache_by_default: "1"
 php_apc_shm_size: "200M"
 php_apc_stat: "1"

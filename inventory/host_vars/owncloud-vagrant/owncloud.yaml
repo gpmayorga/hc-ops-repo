@@ -26,7 +26,7 @@ owncloud_data_directory: /var/www/owncloud/data
 owncloud_ssl_certificate: "{{ ssl_certs_cert_path }}"
 owncloud_ssl_certificate_key: "{{ ssl_certs_privkey_path }}"
 
-
+owncloud_root_directory: /var/www/owncloud
 owncloud_database_server: mysql # mysql, sqlite, manual
 owncloud_database_name: owncloud
 owncloud_database_username: owncloud
