@@ -1,0 +1,18 @@
+---
+ 
+- name: Copy SSH config
+  become: yes
+  template: src="{{ item }}" dest=/etc/
+  with_fileglob:
+    - etc/ssh/*
+- name: create /etc/hostname
+  file: path=/etc/hostname state=touch
+
+- name: Setup hostname (generic)
+  hostname: name={{ inventory_hostname }}
+
+- name: add hostname to hostfile
+  lineinfile:
+    line: "{{ ansible_default_ipv4 }}  {{ inventory_hostname }}"
+    state: present
+    dest: /etc/hosts
