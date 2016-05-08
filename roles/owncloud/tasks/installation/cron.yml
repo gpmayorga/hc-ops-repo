@@ -5,4 +5,4 @@
     cron_file: owncloud
     user: "{{ owncloud_web_user }}"
     minute: "*/15"
-    job: "php -f {{ owncloud_root_directory }}/owncloud/cron.php"
+    job: "php -f {{ owncloud_root_directory }}/cron.php"

@@ -12,3 +12,4 @@ base_packages_list: # CentOS !
   - yum-utils
   - vim
   - git
+  - wget

@@ -8,12 +8,18 @@
   command: yum-config-manager --disable "{{ item.name }}"*
   with_items: "{{ additional_repos }}"
 
-- name: Ensure PHP packages are installed.
+- name: Ensure officially available PHP packages are installed.
   yum:
     name: "{{ item }}"
     state: installed
-    enablerepo: "{{ php_enablerepo }}"
   with_items: "{{ php_packages }}"
   notify: restart webserver
   tags: install-php
-  
+
+- name: Install other packages from external repos
+  yum:
+    name: "{{ item.name }}"
+    state: installed
+    enablerepo: "{{ item.repo }}"
+  with_items: "{{ external_packages }}"
+

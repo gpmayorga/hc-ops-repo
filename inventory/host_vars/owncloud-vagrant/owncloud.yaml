@@ -7,7 +7,7 @@ owncloud_admin_password: secret
 # owncloud_config_user_backend: ~ # imap, smb, ftp
 # owncloud_config_user_backend_argument: ~
 
-owncloud_config_trusted_domains: ["localhost", "{{ external_fqdn }}", "{{ ansible_default_ipv4['address'] }}"]
+owncloud_config_trusted_domains: ["localhost", "{{ external_fqdn }}", "{{ ansible_ssh_host }}"]
 owncloud_config_cli_url: "https://{{ external_fqdn }}"
 owncloud_config_mail_domain: "{{ external_fqdn }}"
 owncloud_config_defaultapp: "files"
@@ -33,3 +33,4 @@ owncloud_database_username: owncloud
 owncloud_database_password: WELzrNCjUuwhGijQt2s1
 
 owncloud_web_user: "{{ webserver_user }}"
+nginx_root_directory: /var/www

@@ -10,5 +10,4 @@
     - mariadb    
     - php
     - ssl-certs
-    # - owncloud
-    
+    - owncloud

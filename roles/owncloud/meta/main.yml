@@ -11,4 +11,4 @@ galaxy_info:
   categories:
     - web
     - cloud
-# dependencies: [nginx,mariadb]
+dependencies: [nginx]

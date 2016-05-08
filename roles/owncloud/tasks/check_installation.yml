@@ -1,13 +1,13 @@
 ---
 - name: check owncloud installation
   stat:
-    path: "{{ owncloud_root_directory }}/owncloud/occ"
+    path: "{{ owncloud_root_directory }}/occ"
   register: owncloud_command
 
 - debug: var=owncloud_web_user
 
 - name: get installation status of owncloud
-  shell: php {{ owncloud_root_directory }}/owncloud/occ status | grep install
+  shell: php {{ owncloud_root_directory }}/occ status | grep install
   become: yes
   become_user: "{{ owncloud_web_user }}"
   when: "owncloud_command.stat.exists"
@@ -15,7 +15,7 @@
   register: owncloud_status_installed
 
 - name: get installed owncloud version
-  shell: php {{ owncloud_root_directory }}/owncloud/occ status | grep versionstring
+  shell: php {{ owncloud_root_directory }}/occ status | grep versionstring
   become: yes
   become_user: "{{ owncloud_web_user }}"
   when: "owncloud_command.stat.exists"

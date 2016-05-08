@@ -1,15 +1,14 @@
 ---
-- include: webserver/nginx.yml
+
 - include: check_installation.yml
 
 - include: installation/download.yml
 - include: installation/directories.yml
 - include: installation/cron.yml
-- include: config.yml
 
-
-
-- include: database/mysql.yml
+- include: configuration/config.yml
+- include: configuration/nginx.yml
+- include: configuration/mysql.yml
   when: "owncloud_database_server == 'mysql'"
 
 - include: check_installation.yml

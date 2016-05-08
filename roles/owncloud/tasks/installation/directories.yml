@@ -1,29 +1,15 @@
 ---
 - name: ensure main directory has correct permissions
   file:
-    path: "{{ owncloud_root_directory }}/owncloud"
+    path: "{{ owncloud_root_directory }}"
     state: directory
     owner: root
     group: "{{ owncloud_web_user }}"
-    mode: "u=rwX,g=rX,o=rX"
     recurse: yes
+
   # when: "owncloud_download|changed"
 
-- name: ensure writable directories have correct permissions
-  file:
-    path: "{{ item }}"
-    state: directory
-    owner: "{{ owncloud_web_user }}"
-    group: "{{ owncloud_web_user }}"
-    mode: "u=rwX,g=rX,o=rX"
-    recurse: yes
-  with_items:
-    - "{{ owncloud_root_directory }}/owncloud/apps"
-    - "{{ owncloud_root_directory }}/owncloud/apps-store"
-    - "{{ owncloud_root_directory }}/owncloud/themes"
-    - "{{ owncloud_root_directory }}/owncloud/assets"
-
-- name: ensure private directories have correct owners
+- name: ensure other directories have correct permissions
   file:
     path: "{{ item }}"
     state: directory
@@ -31,22 +17,28 @@
     group: "{{ owncloud_web_user }}"
     recurse: yes
   with_items:
+    - "{{ owncloud_root_directory }}/apps"
+    - "{{ owncloud_root_directory }}/apps-store"
+    - "{{ owncloud_root_directory }}/themes"
+    - "{{ owncloud_root_directory }}/assets"
+    - "{{ owncloud_root_directory }}/config"
     - "{{ owncloud_data_directory }}"
-    - "{{ owncloud_root_directory }}/owncloud/config"
-    - "{{ owncloud_root_directory }}/owncloud/data"
+- name: make sure /var/lib/php/session is owned by nginx
+  file:
+    dest: /var/lib/php/session
+    state: directory
+    owner: "{{ owncloud_web_user }}"
+    group: "{{ owncloud_web_user }}"
 
-- name: ensure private directories have correct permissions
+- name: make sure .htaccess are created
   file:
     path: "{{ item }}"
-    state: directory
-    mode: "u=rwx,g=rx,o-rwx"
+    state: touch
+    owner: "{{ owncloud_web_user }}"
+    group: "{{ owncloud_web_user }}"
   with_items:
-    - "{{ owncloud_data_directory }}"
-    - "{{ owncloud_root_directory }}/owncloud/config"
-    - "{{ owncloud_root_directory }}/owncloud/data"
+    - "{{ owncloud_root_directory }}/.htaccess"
+    - "{{ owncloud_data_directory }}/.htaccess"
 
-- name: ensure config directory is linked in /etc
-  file:
-    src: "{{ owncloud_root_directory }}/owncloud/config"
-    dest: /etc/owncloud
-    state: link
+- name: apply owncloud's permission hardening script
+  script: fixpermissions.sh "{{ owncloud_root_directory }}" "{{ owncloud_web_user }}"

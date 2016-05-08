@@ -5,7 +5,7 @@
   with_dict: "{{users}}"
   register: user_changed
   when: ( "'{{item.value.server_group}}' in group_names" or "'all' in {{item.value.server_group}}") and (local_users.stdout.find('{{item.key}}')==-1)
-  tags: debug1
+
 
 - name: Adding SSH key for given users
   authorized_key: user={{item.key}} key="{{item.value.ssh_key}}"

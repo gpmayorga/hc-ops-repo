@@ -1,6 +1,9 @@
 ---
-# Pass in a comma-separated list of repos to use (e.g. "remi,epel").
-php_enablerepo: ""
+
+# Hash of 'name:' and 'repo:' to install packages from external repos liste above
+external_packages: []
+  # - { name: php-mcrypt, repo: epel }
+  # - { name: php-imagick, repo: remi }
 
 # Set this to false if you're not using PHP with Apache/Nginx/etc.
 php_enable_webserver: true

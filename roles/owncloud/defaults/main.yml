@@ -3,11 +3,11 @@ owncloud_server_name: example.com
 
 owncloud_admin_username: admin
 owncloud_admin_password: secret
-
+owncloud_config_directory: "{{ owncloud_root_directory }}/config"
 owncloud_config_user_backend: ~ # imap, smb, ftp
 owncloud_config_user_backend_argument: ~
 
-owncloud_config_trusted_domains: ["localhost", "example.com"]
+owncloud_config_trusted_domains: ["localhost", "{{ ansible_hostname }}", "{{ ansible_default_ipv4 }}"]
 owncloud_config_cli_url: "https://example.com"
 owncloud_config_mail_domain: "example.com"
 owncloud_config_defaultapp: ~

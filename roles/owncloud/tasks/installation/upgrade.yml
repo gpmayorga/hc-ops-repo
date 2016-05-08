@@ -2,6 +2,6 @@
 - name: ensure owncloud is upgraded
   command: "php occ upgrade"
   args:
-    chdir: "{{ owncloud_root_directory }}/owncloud"
+    chdir: "{{ owncloud_root_directory }}"
   become: yes
   become_user: "{{ owncloud_web_user }}"

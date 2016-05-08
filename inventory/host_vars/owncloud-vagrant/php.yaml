@@ -2,7 +2,7 @@
 # Only overrided variables should be here, 
 # otherwise, use defaults:
 
-php_enablerepo: extras,centosplus,epel,remi
+# php_enablerepo: extras,centosplus
 
 php_packages: 
 # Basic
@@ -17,10 +17,13 @@ php_packages:
   - php-mysql
   - php-curl
   - php-intl
-  - php-mcrypt
-  - php-imagick
   - php-posix
   - php-xml
+
+# Hash of name: and repo: to install packages from external repos liste above
+external_packages:
+  - { name: php-mcrypt, repo: epel }
+  - { name: php-imagick, repo: remi }
 
 # Set this to false if you're not using PHP with Apache/Nginx/etc.
 php_enable_webserver: true
@@ -42,7 +45,7 @@ php_opcache_enable: "0"
 php_opcache_enable_cli: "0"
 
 # APC
-php_enable_apc: true
+php_enable_apc: false
 php_apc_enabled_in_ini: false
 php_apc_cache_by_default: "1"
 php_apc_shm_size: "200M"

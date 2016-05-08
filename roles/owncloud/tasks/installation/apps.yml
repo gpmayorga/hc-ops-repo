@@ -2,7 +2,7 @@
 - name: check if apps are enabled
   command: "php occ config:app:get {{ item.name }} enabled"
   args:
-    chdir: "{{ owncloud_root_directory }}/owncloud"
+    chdir: "{{ owncloud_root_directory }}"
   become: yes
   become_user: "{{ owncloud_web_user }}"
   failed_when: false
@@ -13,7 +13,7 @@
 - name: ensure owncloud apps are enabled
   command: "php occ app:enable {{ item.0.name }}"
   args:
-    chdir: "{{ owncloud_root_directory }}/owncloud"
+    chdir: "{{ owncloud_root_directory }}"
   become: yes
   become_user: "{{ owncloud_web_user }}"
   when: "item.0.enabled|default(true) == true and item.1.stdout != 'yes'"
@@ -24,7 +24,7 @@
 - name: ensure owncloud apps are disabled
   command: "php occ app:enable {{ item.0.name }}"
   args:
-    chdir: "{{ owncloud_root_directory }}/owncloud"
+    chdir: "{{ owncloud_root_directory }}"
   become: yes
   become_user: "{{ owncloud_web_user }}"
   when: "item.0.enabled|default(true) == false and item.1.stdout == 'yes'"
