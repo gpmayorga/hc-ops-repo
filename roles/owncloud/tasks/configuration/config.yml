@@ -1,0 +1,30 @@
+---
+- name: ensure config file is restored from backup
+  copy:
+    src: "{{ owncloud_restore_config }}"
+    dest: "{{ owncloud_config_directory }}/config.php"
+    remote_src: yes
+    owner: "{{ owncloud_web_user }}"
+    group: "{{ owncloud_web_user }}"
+    mode: 0640
+  when: "owncloud_restore_config is defined and owncloud_installed != true"
+  register: owncloud_restored_config
+  tags: owncloud.php.config
+
+- name: ensure owncloud database connection is configured
+  template:
+    src: database.config.php.j2
+    dest: "{{ owncloud_config_directory }}/database.config.php"
+    owner: "{{ owncloud_web_user }}"
+    group: "{{ owncloud_web_user }}"
+    mode: 0640
+  tags: owncloud.php.config
+  
+- name: ensure owncloud is configured
+  template:
+    src: custom.config.php.j2
+    dest: "{{ owncloud_config_directory }}/custom.config.php"
+    owner: "{{ owncloud_web_user }}"
+    group: "{{ owncloud_web_user }}"
+    mode: 0640
+  tags: owncloud.php.config
