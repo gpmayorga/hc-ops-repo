@@ -1,0 +1,9 @@
+---
+- name: setup hostname
+  command: hostnamectl set-hostname {{ inventory_hostname }}
+
+- name: add hostname to hostfile
+  lineinfile:
+    line: "{{ ansible_default_ipv4 }}  {{ inventory_hostname }}"
+    state: present
+    dest: /etc/hosts
