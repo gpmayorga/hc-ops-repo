@@ -2,10 +2,11 @@
 dependencies: []
 
 galaxy_info:
-  author: geerlingguy
+  author: Guillermo Perez
+  original_author: geerlingguy
   description: PHP for RedHat/CentOS/Debian/Ubuntu.
-  company: "Midwestern Mac, LLC"
-  license: "license (BSD, MIT)"
+  company: "Hispacloud"
+  license: "GPLv3"
   min_ansible_version: 1.8
   platforms:
   - name: EL

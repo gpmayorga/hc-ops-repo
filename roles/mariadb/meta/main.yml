@@ -1,16 +1,24 @@
 ---
 galaxy_info:
-  author: Bert Van Vreckem
-  description: Manage MariaDB on CentOS 7
-  company:
-  license: BSD
+  original_author: Bert Van Vreckem
+  author: Guillermo Perez
+  description: MariaDB on CentOS 7 RHEL 7
+  company: Hispacloud
+  license: FreeBSD
   min_ansible_version: 1.7
   platforms:
-  - name: EL
-    versions:
-      - 7
+    - name: Fedora
+      versions:
+        - 23
+    - name: EL
+      versions:
+        - 7
+    - name: CentOS
+      versions:
+        - 7  
   categories:
     - database
     - database:sql
+    - database:mariadb
 dependencies: []
 

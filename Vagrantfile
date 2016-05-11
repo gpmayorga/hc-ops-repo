@@ -31,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #use the storage pool named external
       #libvirt.storage_pool_name = "external"
       libvirt.driver = "kvm"
-      libvirt.memory = 1024
+      libvirt.memory = 4096
       libvirt.cpus = 2
     end
   end
