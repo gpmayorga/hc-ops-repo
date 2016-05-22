@@ -11,9 +11,12 @@
     - '{{ owncloud_root_directory }}/config'
     - '{{ owncloud_root_directory }}/apps'
     - '{{ owncloud_root_directory }}/apps-store'
+    - '{{ owncloud_root_directory }}/assets'
     - '{{ owncloud_root_directory }}/config(/.*)'
-    # - '{{ owncloud_root_directory }}/apps(/.*)'
-    # - '{{ owncloud_root_directory }}/data(/.*)'
+    - '{{ owncloud_root_directory }}/apps(/.*)'
+    - '{{ owncloud_root_directory }}/data(/.*)'
+    - '{{ owncloud_root_directory }}/apps-store(/.*)'
+    - '{{ owncloud_root_directory }}/assets(/.*)'
   tags: selinux
 
 - name: restorecon  owncloud selinux policies
@@ -23,4 +26,5 @@
     - '{{ owncloud_root_directory }}/config'
     - '{{ owncloud_root_directory }}/apps'
     - '{{ owncloud_root_directory }}/apps-store'
+    - '{{ owncloud_root_directory }}/assets'
   tags: selinux
