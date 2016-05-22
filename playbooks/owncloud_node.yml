@@ -10,4 +10,4 @@
     - mariadb    
     - php
     - ssl-certs
-    - owncloud
+    - { role: owncloud, tags: owncloud }
