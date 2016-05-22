@@ -35,3 +35,6 @@ additional_repos:
 
   - name: epel
     url: epel-release
+
+  - name: centos-release-scl
+    url: centos-release-scl

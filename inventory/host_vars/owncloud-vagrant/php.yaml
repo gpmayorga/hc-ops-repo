@@ -6,25 +6,26 @@
 
 php_packages: 
 # Basic
-  - php
-  - php-cli
-  - php-devel
-  - php-common
-  - php-fpm  
 # Owncloud recommended:  
-  - php-gd
   - php-json
-  - php-mysql
   - php-curl
-  - php-intl
   - php-posix
-  - php-xml
 
 # Hash of name: and repo: to install packages from external repos liste above
 external_packages:
   - { name: php-mcrypt, repo: epel }
   - { name: php-imagick, repo: remi }
-
+  - { name: php55, repo: centos-sclo-rh }
+  - { name: php55-php, repo: centos-sclo-rh }
+  - { name: php55-php-gd, repo: centos-sclo-rh }
+  - { name: php55-php-mbstring, repo: centos-sclo-rh }
+  - { name: php55-php-mysqlnd, repo: centos-sclo-rh }
+  - { name: php55-php-fpm, repo: centos-sclo-rh }
+  - { name: php55-php-common, repo: centos-sclo-rh }
+  - { name: php55-php-devel, repo: centos-sclo-rh }
+  - { name: php55-php-cli, repo: centos-sclo-rh }
+  - { name: php55-php-xml, repo: centos-sclo-rh }
+  - { name: php55-php-intl, repo: centos-sclo-rh }
 # Set this to false if you're not using PHP with Apache/Nginx/etc.
 php_enable_webserver: true
 
