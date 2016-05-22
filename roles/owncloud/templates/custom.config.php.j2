@@ -1,5 +1,8 @@
 <?php
 $CONFIG = array (
+{% if owncloud_theme is defined %}
+  'theme' => '{{ owncloud_theme }}'
+{% endif %}
   'datadirectory' => '{{ owncloud_data_directory }}',
   'asset-pipeline.enabled' => true,
   'filesystem_check_changes' => {{ owncloud_config_filesystem_check|int(1) }},

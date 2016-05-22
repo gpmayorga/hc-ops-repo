@@ -1,0 +1,8 @@
+---
+
+- name: unzip themes for owncloud
+  unarchive: 
+    src: "{{ item }}"
+    dest: "{{ owncloud_root_directory }}/themes/{{ item }}"
+  with_fileglob:
+    - themes/*

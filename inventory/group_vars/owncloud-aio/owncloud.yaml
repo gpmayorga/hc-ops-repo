@@ -4,6 +4,7 @@ owncloud_server_name: "{{ external_fqdn }}"
 owncloud_admin_username: admin
 owncloud_admin_password: secret
 
+owncloud_theme: hispacloud
 # owncloud_config_user_backend: ~ # imap, smb, ftp
 # owncloud_config_user_backend_argument: ~
 
@@ -34,3 +35,4 @@ owncloud_database_password: WELzrNCjUuwhGijQt2s1
 
 owncloud_web_user: "{{ webserver_user }}"
 nginx_root_directory: /var/www
+
