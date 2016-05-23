@@ -1,4 +1,4 @@
-ssl_cert: |
+ssl_certs_local_cert_data: |
   -----BEGIN CERTIFICATE-----
   MIIF7jCCBNagAwIBAgIQF84xmzbNFhWQLzvC5x7ShDANBgkqhkiG9w0BAQsFADB4
   MQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjEpMCcGA1UECxMg
@@ -69,4 +69,4 @@ ssl_cert: |
   Szc2kuPNbrV8PvbTLIXupfZFFj0d9mpaFg==
   -----END CERTIFICATE-----
 
-ssl_key: "{{ vault_ssl_key }}"
+ssl_certs_local_privkey_data: "{{ vault_ssl_key }}"

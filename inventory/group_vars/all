@@ -1,4 +1,4 @@
-
+external_fqdn: "{{ ansible_hostname }}"
 root_pubkey: "{{ users.admin.ssh_key }}"
 root_keyname: hispacloud-root
 

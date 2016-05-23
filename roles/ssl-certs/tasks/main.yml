@@ -33,6 +33,12 @@
     when: stat_privkey.stat.exists and not stat_cert.stat.exists
     tags: [ssl-certs,configuration]
 
+  - debug: var=ssl_certs_local_privkey_data
+    tags: debug1
+
+  - debug: var=vault_ssl_key
+    tags: debug1
+
   - include: generate.yml
     when: >
       ( not stat_privkey.stat.exists and not stat_cert.stat.exists )
