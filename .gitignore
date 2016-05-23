@@ -1,5 +1,5 @@
 # Ansible 
-.retry
+*.retry
 .galaxy*
 # Byte-compiled / optimized / DLL files
 __pycache__/
