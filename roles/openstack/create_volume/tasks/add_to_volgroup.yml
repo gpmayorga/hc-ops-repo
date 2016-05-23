@@ -1,0 +1,10 @@
+---
+
+- name: add disk to vol group
+  shell: vgextend {{ vg_name }} /dev/{{ hd_name }}
+
+- name: extend logical volume
+  shell: lvextend -l +100%FREE /dev/{{ vg_name }}/main_vol
+
+- name: extend file system
+  shell: resize2fs /dev/{{ vg_name }}/main_vol

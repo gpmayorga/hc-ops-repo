@@ -1,18 +1,30 @@
 ---
-    - name: Add hispacloud ssh key
-      os_keypair:  
-        name: "{{ root_keyname }}"  
-        public_key: "{{ root_pubkey }}"   
-        state: present
+- name: Add hispacloud ssh key
+  os_keypair:  
+    name: "{{ root_keyname }}"  
+    public_key: "{{ root_pubkey }}"   
+    state: present
 
-    - name: Create Instance in OpenStack
-      os_server:
-        state: present
-        name: "{{ instance_hostname }}"
-        image: d7dead23-3b7f-4b81-8d6f-f5816a71b054 #CentOS7
-        key_name: "{{ root_keyname }}"
-        wait: yes
-        auto_floating_ip: yes
-        security_groups: "{{ instance_security_group }}"
-        flavor: "{{ instance_size }}"
-        network: "{{ instance_network }}"
+- name: Create Instance in OpenStack
+  os_server:
+    state: present
+    name: "{{ instance_hostname }}"
+    image: d7dead23-3b7f-4b81-8d6f-f5816a71b054 #CentOS7
+    key_name: "{{ root_keyname }}"
+    wait: yes
+    auto_floating_ip: yes
+    security_groups: "{{ instance_security_group }}"
+    flavor: "{{ instance_size }}"
+    network: "{{ instance_network }}"
+
+- name: install python-pip
+  yum:
+    name: python-pip
+    enablerepo: epel
+    state: latest
+- name: install python-devel
+  yum:
+    name: python-devel
+    state: latest    
+- name: install openstack dependencies
+  pip: name=shade

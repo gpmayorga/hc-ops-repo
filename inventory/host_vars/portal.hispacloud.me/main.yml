@@ -1,2 +1,3 @@
 ssl_certs_generate_self_signed: no
 external_fqdn: 'portal.hispacloud.me'
+data_mount_point: "{{ owncloud_data_directory }}"

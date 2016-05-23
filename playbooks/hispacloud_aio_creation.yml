@@ -1,8 +1,15 @@
 - hosts: localhost
   roles:
-    - openstack/create_instance
+    - role: openstack/create_instance
+      tags: instance
   vars:
     instance_hostname: portal.hispacloud.allinone
     instance_security_group: portal_hispacloud
     instance_size: 589
     instance_network: ext-net
+
+- hosts: owncloud-aio
+  roles:
+    - role: openstack/create_volume
+      tags: volume
+  become: yes

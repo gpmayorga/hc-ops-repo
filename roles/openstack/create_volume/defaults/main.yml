@@ -1,0 +1,3 @@
+vg_name: generic_data_vg
+hd_name: vdb
+data_mount_point: /mnt
