@@ -1,0 +1,109 @@
+/**
+ * @author Jan-Christoph Borchardt, http://jancborchardt.net
+ * @copyright Copyright (c) 2015, ownCloud, Inc.
+ * @license AGPL-3.0
+ *
+ * This code is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License, version 3,
+ * as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License, version 3,
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+
+
+/* header color */
+/* this is the main brand color */
+#body-user #header,
+#body-settings #header,
+#body-public #header {
+	background-color: #003c4c;
+}
+
+/* log in screen background color */
+/* gradient of the header color and a brighter shade */
+/* can also be a flat color or an image */
+#body-login {
+	background: #ffffff; /* Old browsers */
+}
+
+/* primary action button, use sparingly */
+/* header color as border, brighter shade again, here as background */
+.primary,
+input[type="submit"].primary,
+input[type="button"].primary,
+button.primary,
+.button.primary,
+.primary:active,
+input[type="submit"].primary:active,
+input[type="button"].primary:active,
+button.primary:active,
+.button.primary:active {
+	border-color: #745bca;
+	background-color: #947bea;
+}
+.primary:hover,
+input[type="submit"].primary:hover,
+input[type="button"].primary:hover,
+button.primary:hover,
+.button.primary:hover,
+.primary:focus,
+input[type="submit"].primary:focus,
+input[type="button"].primary:focus,
+button.primary:focus,
+.button.primary:focus {
+	background-color: #8b75e4;
+}
+.primary:active, input[type="submit"].primary:active, input[type="button"].primary:active, button.primary:active, .button.primary:active,
+.primary:disabled, input[type="submit"].primary:disabled, input[type="button"].primary:disabled, button.primary:disabled, .button.primary:disabled,
+.primary:disabled:hover, input[type="submit"].primary:disabled:hover, input[type="button"].primary:disabled:hover, button.primary:disabled:hover, .button.primary:disabled:hover,
+.primary:disabled:focus, input[type="submit"].primary:disabled:focus, input[type="button"].primary:disabled:focus, button.primary:disabled:focus, .button.primary:disabled:focus {
+	background-color: #745bca;
+}
+
+/* use logos from theme */
+#header .logo {
+	background-image: url('../img/logo.png');
+	width: 250px;
+	height: 121px;
+}
+#header .logo-icon {
+	background-image: url('../img/logo-icon.png');
+	width: 62px;
+	height: 34px;
+}
+
+#body-login input[type="text"], #body-login input[type="password"] {
+    width: 248px;
+}
+
+#body-login input[type="text"], #body-login input[type="password"], #body-login input[type="email"]
+{
+    border: 1px solid #ddd;
+}
+
+#body-login input[type="text"] {
+    border-bottom: none;
+}
+
+html:not(.ie8) input[type="checkbox"].checkbox--white + label:before {
+	background-image: url('../../../../core/img/actions/checkbox.svg');
+}
+
+html:not(.ie8) input[type="checkbox"].checkbox--white:checked + label:before {
+	background-image: url('../../../../core/img/actions/checkbox-checked.svg');
+}
+
+#body-login form input[type="checkbox"]+label, #body-login #remember_login:hover+label, #body-login #remember_login:focus+label {
+    color: #000 !important;
+}
+
+#body-login p.info, #body-login p.info a, #body-login p.info a:hover, #body-login p.info a:visited {
+	color: #000;
+}
+

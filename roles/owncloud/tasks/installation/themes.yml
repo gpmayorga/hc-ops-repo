@@ -1,9 +1,4 @@
 ---
 
-- name: unzip themes for owncloud
-  unarchive: 
-    src: "{{ item }}"
-    dest: "{{ owncloud_root_directory }}/themes/"
-  with_fileglob:
-    - themes/*
-  tags: theme
+- name: apply owncloud theming
+  script: apply-theming.sh "{{ owncloud_root_directory }}" "{{ owncloud_web_user }}"
