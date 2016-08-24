@@ -1,6 +1,6 @@
 debug_mode: false
 
-default_users: ['ec2-user', 'root', 'ubuntu', 'debian', 'admin', 'vagrant']
+default_users: ['ec2-user', 'root', 'ubuntu', 'debian', 'admin', 'vagrant', 'centos']
 
 user_groups:
   - name: sudogroup

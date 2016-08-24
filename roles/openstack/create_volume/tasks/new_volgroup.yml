@@ -1,0 +1,12 @@
+---
+
+- name: create vol group
+  lvg: vg={{ vg_name }} pvs=/dev/{{ hd_name }} state=present
+
+
+- name: create logical volume
+  lvol: lv=main_vol size=100%FREE state=present vg={{ vg_name }} force=yes
+
+
+- name: create file system
+  filesystem: fstype=ext4 dev=/dev/{{ vg_name }}/main_vol

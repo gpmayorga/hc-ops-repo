@@ -1,3 +1,7 @@
+external_fqdn: "{{ ansible_hostname }}"
+root_pubkey: "{{ users.admin.ssh_key }}"
+root_keyname: hispacloud-root
+
 user_groups:
   - name: superadmin
     sudo_line: "%superadmin ALL=(ALL) NOPASSWD:ALL"

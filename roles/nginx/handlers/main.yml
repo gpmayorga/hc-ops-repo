@@ -1,0 +1,15 @@
+---
+- name: reload nginx
+  service:
+    name: nginx
+    state: reloaded
+
+- name: stop nginx
+  service:
+    name: nginx
+    state: stopped
+
+- name: retart nginx
+  service:
+    name: nginx
+    state: restart

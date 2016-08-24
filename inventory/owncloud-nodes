@@ -1,4 +1,10 @@
 
-[owncloud-nodes]
-#owncloud-debian-aio.hispanube.me ansible_ssh_host=212.231.128.33
+[owncloud-nodes:children]
+owncloud-aio
+
+
+[owncloud-aio]
+
 owncloud-vagrant ansible_ssh_host=10.0.0.10 ansible_ssh_private_key_file='/home/guille/repos/ops/.vagrant/machines/vmtest/libvirt/private_key' ansible_ssh_user=vagrant
+
+portal.hispacloud.me ansible_user=centos

@@ -13,3 +13,5 @@ base_packages_list: # CentOS !
   - vim
   - git
   - wget
+  - bzip2
+  - unzip
