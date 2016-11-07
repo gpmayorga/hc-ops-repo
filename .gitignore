@@ -1,4 +1,5 @@
-# Ansible 
+# Ansible
+vaultpassword
 *.retry
 .galaxy*
 # Byte-compiled / optimized / DLL files
@@ -66,4 +67,3 @@ target/
 
 # Vagrant temp files
 .vagrant*
-

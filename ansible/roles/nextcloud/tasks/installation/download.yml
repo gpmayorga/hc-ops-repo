@@ -1,0 +1,23 @@
+---
+# - set_fact:
+#     nextcloud_download_path: "{% if nextcloud_release_channel == 'testing' %}/testing{% endif %}"
+- name: create nextcloud directory
+  file:
+    state: directory
+    path: "{{ nextcloud_root_directory }}"
+    owner: root
+    group: "{{ nextcloud_web_user }}"
+
+- name: download nextcloud/nextcloud
+  get_url:
+    url: "{{ nextcloud_tarball_url }}/{{ nextcloud_version }}.{{ nextcloud_tarball_extension }}"
+    dest: "/tmp/nextcloud_tarball.{{ nextcloud_tarball_extension }}"
+    checksum: "{{ nextcloud_tarball_checksum | default(None) }}"
+
+- name: unpack nextcloud
+  unarchive:
+    src: "/tmp/nextcloud_tarball.{{ nextcloud_tarball_extension }}"
+    dest: "{{ nginx_root_directory }}"
+    copy: no
+  when: "nextcloud_installed != true or nextcloud_installed_version != nextcloud_version"
+  register: nextcloud_download

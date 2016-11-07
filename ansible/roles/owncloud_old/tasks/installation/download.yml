@@ -1,0 +1,23 @@
+---
+# - set_fact:
+#     owncloud_download_path: "{% if owncloud_release_channel == 'testing' %}/testing{% endif %}"
+- name: create owncloud directory
+  file:
+    state: directory
+    path: "{{ owncloud_root_directory }}"
+    owner: root
+    group: "{{ owncloud_web_user }}"
+
+- name: download owncloud/nextcloud
+  get_url:
+    url: "{{ owncloud_tarball_url }}/{{ owncloud_version }}.{{ owncloud_tarball_extension }}"
+    dest: "/tmp/owncloud_tarball.{{ owncloud_tarball_extension }}"
+    checksum: "{{ owncloud_tarball_checksum | default(None) }}"
+
+- name: unpack owncloud
+  unarchive:
+    src: "/tmp/owncloud_tarball.{{ owncloud_tarball_extension }}"
+    dest: "{{ nginx_root_directory }}/owncloud"
+    copy: no
+  when: "owncloud_installed != true or owncloud_installed_version != owncloud_version"
+  register: owncloud_download

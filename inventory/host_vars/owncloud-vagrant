@@ -1,2 +1,0 @@
-ssl_certs_generate_self_signed: yes
-external_fqdn: 'owncloud-aio.vagrant'
