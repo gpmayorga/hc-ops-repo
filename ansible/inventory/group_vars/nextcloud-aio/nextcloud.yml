@@ -1,0 +1,36 @@
+---
+nextcloud_server_name: "{{ external_fqdn }}"
+
+nextcloud_admin_username: admin
+nextcloud_admin_password: secret
+
+nextcloud_theme: hispacloud
+# nextcloud_config_user_backend: ~ # imap, smb, ftp
+# nextcloud_config_user_backend_argument: ~
+
+nextcloud_config_trusted_domains: ["localhost", "{{ external_fqdn }}", "{{ ansible_ssh_host }}"]
+nextcloud_config_cli_url: "https://{{ external_fqdn }}"
+nextcloud_config_mail_domain: "{{ external_fqdn }}"
+nextcloud_config_defaultapp: "files"
+nextcloud_config_filesystem_check: 1
+nextcloud_config_loglevel: 2
+
+nextcloud_apps: []
+nextcloud_tarball_checksum: "sha256:39412a28f02fd7ca8c9267b4ccf02ac28c1eb27995d77c06ceb2699375978b25"
+nextcloud_tarball_url: "https://download.nextcloud.com/server/releases/"
+nextcloud_version: "nextcloud-10.0.1"
+nextcloud_tarball_extension: "tar.bz2"
+
+nextcloud_data_directory: /var/www/nextcloud/data
+
+nextcloud_ssl_certificate: "{{ ssl_certs_cert_path }}"
+nextcloud_ssl_certificate_key: "{{ ssl_certs_privkey_path }}"
+
+nextcloud_root_directory: /var/www/nextcloud
+nextcloud_database_server: mysql # mysql, sqlite, manual
+nextcloud_database_name: nextcloud
+nextcloud_database_username: nextcloud
+nextcloud_database_password: WELzrNCjUuwhGijQt2s1
+
+nextcloud_web_user: "{{ webserver_user }}"
+nginx_root_directory: /var/www

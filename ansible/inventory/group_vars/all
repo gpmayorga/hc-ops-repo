@@ -1,0 +1,18 @@
+external_fqdn: "{{ ansible_hostname }}"
+root_pubkey: "{{ users.admin.ssh_key }}"
+root_keyname: hispacloud-root
+
+user_groups:
+  - name: superadmin
+    sudo_line: "%superadmin ALL=(ALL) NOPASSWD:ALL"
+
+
+users:
+  guille:
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDfGN05sd1RyhaUAAo8RUy564tA5u6g90Pj3u2OKY43uhmTEkLwWQOiGTXLXhkOIlFjsF+wqReP2NnggA687ZRg8sQaJbpzcN15XwQfBbnM3rg70/YNvwfriQ4uWSnP0mrZSXip4K9FDjp45bFVT0P5GqAiX/fC7c+adnXhN5xCb6f+IsZuvePoRo7i0So1QH0RdNjYFznfu0xXBQZMnviVuF10QzmhNE3rDn4Es2lmYcUTS33ld6n1EkCD/xaA8GrCj7oLyRhxtmr7zz5Cbtf0tIhdspbgy/xNgoSTRu42PIhX7I/NbC7fR32TK6LzM6gwcEu3lk4DZN6rK4L5w3OVBXsXbuCJxSXgvaictMC7IAf2/pNO/Cw3qDmSMUfXfu7+tjgWReGgip3zxni/U/soY0sARk1MeNMwcfHw7reKnEEks1xKsDeyu+z1bedzZYa669m060L4W5F40Y5rHEY4JM1RHdUh9/IFzDj7gcDrx5/Xax6wQU9GQrxptEWU3zA8LPpzZMBePrMq3+H2LIGlhUXBS+jg28Ai2dW0+26HzbQygUziLlSqwLXL1e7/j6KcW26Wwz6itfNxFOzIp4IvXdFUXW6uCQLKNXYuZfjKVGoWoiTK1RvG3aPE1Pc/uXbOWMMWmR+jBDu6OtC2Uc111TumoXk4C6nmh8LyM70jfQ== guilermo@eldespertar.me"
+    groups: ['superadmin']
+    server_group: ['all']
+  admin:
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5H2+gUfcih6U74dm9FarOEHHB6UjBEYGKRxLKpxh42Eo3Zu9UarhdNRzJmVu9BeNmNZTg85jtuzkZuBh2Bab4I6gJs+cj8lAgim76nUGr2BsujvGokdJFaZDjmyuUt09AecGs3o6K8jZLqErqjJ7gNr6iOaAaToL9dhoOhaba+vqWEa5w+v2aEzMLBVOGe1I0I+uRsIFNwsFqEJ7KLvkgOf693VvtQwPYRK3waDmeUFpw7XtM5Ox2HRRz02p7DJuhYr6B7NkkiQK4XvEiHOzySGvYDaqPEWFYHYhE85DgT9NnkPpZe8E/kaGOhHZpHrOo+cYiWj0bIlA55KbLlnLbXASgKSx5WS03W94GSpt4MIwj9BO/SIe3hX8QwdrHIch4K1S2GSriGVOdzH43y89Rp5bIfqVCQbB8/uuiuBytXkaC9pMZDAe93wLBFvpQ1kaEfewyNa9zEjkgWfXwbo0StEDq4hLwXvPrOo6WAW1KRTLb8rkVox1RqwEuju5sp5rvx2d/W5hrrgJXWDv+d0kwLLHQmygsubslzn+DyQPjBBQtEwbrGo/T93vaK6wtjt2hM7KyYmvICh8O09Tjet0AaWiaTHdw/dU1Cu59nm5p831yBIDPyXkjPdY4+ibDO3bhcslin/UVvSI3fcVLeqkUu68iH3T8Au9arrete3lWKw== root@.hispacloud.me"
+    groups: ['superadmin']
+    server_group: ['all']

@@ -1,0 +1,9 @@
+---
+
+- name: unzip themes for nextcloud
+  unarchive: 
+    src: "{{ item }}"
+    dest: "{{ nextcloud_root_directory }}/themes/"
+  with_fileglob:
+    - themes/*
+  tags: theme

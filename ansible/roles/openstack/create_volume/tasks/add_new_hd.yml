@@ -1,0 +1,19 @@
+
+---
+
+  - name: Install LVM support
+    yum: name=lvm2 update_cache=yes state=latest
+    
+
+  - name: checking if VG exists
+    shell: ls /dev/
+    register: vgresult
+    tags: debug
+
+  ## Create new logical volume if the VG didn't exist
+  - include: new_volgroup.yml
+    when: vgresult.stdout.find('{{ vg_name }}') == -1
+
+  ## Add to existing logical volume if it already exists
+  - include: add_to_volgroup.yml
+    when: vgresult.stdout.find('{{ vg_name }}') != -1

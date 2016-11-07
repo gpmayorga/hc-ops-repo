@@ -1,0 +1,44 @@
+---
+# Keystone endpoint en MasCloud esta cerrado al publico,
+# asique nada de esto funciona:
+
+# - name: gather server facts
+#   os_server_facts: server={{ ansible_hostname }}
+
+# ## Check if disk with the same name is present, if so, skip.
+# - shell: fdisk -l /dev/{{ hd_name }}
+#   register: hdresult
+#   ignore_errors: yes
+#   sudo: true
+#   tags: debug
+
+# - debug: msg="Hard drive /dev/{{ hd_name }} found, nothing to do"
+#   when: hdresult.stdout.find('/dev/{{ hd_name }}') != -1
+
+# - name: Create volume in OpenStack
+#   os_volume:
+#     state: present
+#     display_name: "{{ volume_name }}"
+#     size: "{{ volume_size }}"
+#   when: hdresult.stdout.find('/dev/{{ hd_name }}') == -1
+
+# - name: Attach the volume to the Instance
+#   os_server_volume:
+#     state: present
+#     server: "{{ instance_name }}"
+#     volume: "{{ volume_name }}"
+#     device: 
+#   when: hdresult.stdout.find('/dev/{{ hd_name }}') == -1
+
+
+- include: add_new_hd.yml
+  #when: hdresult.stdout.find('/dev/{{ hd_name }}') == -1
+
+- name: Create data folder / mount point
+  file: path={{ mount_point }} state=directory
+
+- name: Mount secondary HDD
+  mount: src=/dev/{{ vg_name }}/main_vol name={{ data_mount_point }} fstype=ext4 state={{ item }} opts=defaults,nobootwait
+  with_items:
+    - present
+    - mounted

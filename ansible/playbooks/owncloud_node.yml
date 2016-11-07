@@ -1,0 +1,13 @@
+## Install owncloud node
+
+- hosts: all
+  become: yes
+  roles:
+    - provisioning/minimal_packages
+    - provisioning/populate_users
+    - provisioning/sysconfig
+    - nginx
+    - mariadb    
+    - php
+    - ssl-certs
+    - { role: owncloud, tags: owncloud }

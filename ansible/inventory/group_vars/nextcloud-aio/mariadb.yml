@@ -1,0 +1,14 @@
+---
+mariadb_databases: [hispacloud,"{{nextcloud_database_name}}"]
+mariadb_users:
+  - name: "{{ nextcloud_database_username }}"
+    password: "{{ nextcloud_database_password }}"
+    priv: 'nextcloud.*:ALL'
+
+mariadb_root_password: ef&od7pzm9q4eGRTrtPVf6m8nRE
+mariadb_bind_address: '127.0.0.1'
+
+
+
+
+  

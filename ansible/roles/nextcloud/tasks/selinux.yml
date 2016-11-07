@@ -1,0 +1,30 @@
+---
+- name: Install selinux python module
+  become: yes
+  yum: name=policycoreutils-python  state=latest
+  tags: selinux
+  
+- name: add nextcloud selinux policies
+  command: semanage fcontext -a -t httpd_sys_rw_content_t '{{ item }}'
+  with_items:
+    - '{{ nextcloud_root_directory }}/data'
+    - '{{ nextcloud_root_directory }}/config'
+    - '{{ nextcloud_root_directory }}/apps'
+    - '{{ nextcloud_root_directory }}/apps-store'
+    - '{{ nextcloud_root_directory }}/assets'
+    - '{{ nextcloud_root_directory }}/config(/.*)'
+    - '{{ nextcloud_root_directory }}/apps(/.*)'
+    - '{{ nextcloud_root_directory }}/data(/.*)'
+    - '{{ nextcloud_root_directory }}/apps-store(/.*)'
+    - '{{ nextcloud_root_directory }}/assets(/.*)'
+  tags: selinux
+
+- name: restorecon  nextcloud selinux policies
+  command: restorecon -r {{ item }}
+  with_items:
+    - '{{ nextcloud_root_directory }}/data'
+    - '{{ nextcloud_root_directory }}/config'
+    - '{{ nextcloud_root_directory }}/apps'
+    - '{{ nextcloud_root_directory }}/apps-store'
+    - '{{ nextcloud_root_directory }}/assets'
+  tags: selinux
