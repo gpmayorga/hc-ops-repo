@@ -1,4 +1,5 @@
 debug_mode: false
+system_users: ['nagios','www-data','nginx','cht_agent','ubuntu','ec2-user','admin','debian','centos']
 
 default_users: ['ec2-user', 'root', 'ubuntu', 'debian', 'admin', 'vagrant', 'centos']
 

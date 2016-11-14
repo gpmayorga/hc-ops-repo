@@ -23,6 +23,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.playbook = "playbooks/nextcloud_node.yml"
     ansible.inventory_path = "inventory/"
     ansible.limit = "nextcloud-vagrant"
+    ansible.ask_vault_pass = true
+    #ansible.raw_arguments = "--vault-password-file=~/.hc-pass"
     end
     # eth1
     config.vm.network "private_network", ip: "10.0.0.10"

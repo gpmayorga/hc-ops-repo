@@ -15,7 +15,7 @@ nextcloud_config_filesystem_check: 1
 nextcloud_config_loglevel: 2
 
 nextcloud_apps: []
-
+additional_apps: []
 
 nextcloud_root_directory: /var/www
 nextcloud_data_directory: /var/lib/nextcloud/data
@@ -30,3 +30,6 @@ nextcloud_database_password: secret
 
 # nextcloud_restore_database: ~
 # nextcloud_restore_config: ~
+nextcloud_tarball_url: "https://download.nextcloud.com/server/releases/"
+nextcloud_version: "nextcloud-10.0.1"
+nextcloud_tarball_extension: "tar.bz2"

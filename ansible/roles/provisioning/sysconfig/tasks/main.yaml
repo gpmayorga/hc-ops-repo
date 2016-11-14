@@ -1,10 +1,11 @@
 ---
- 
+
 - name: Copy SSH config
   become: yes
   template: src="{{ item }}" dest=/etc/
   with_fileglob:
     - etc/ssh/*
+    
 - name: create /etc/hostname
   file: path=/etc/hostname state=touch
 

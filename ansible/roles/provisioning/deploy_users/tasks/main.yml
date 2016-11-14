@@ -1,0 +1,39 @@
+---
+
+
+- name: Create default groups
+  group: name={{ item.name }} state=present
+  with_items: "{{ user_groups }}"
+
+- name: get local users list
+  shell: ls /home/
+  register: local_users
+  check_mode: no
+  tags:
+    - permissions
+    - delete
+    - users_debug
+
+- include: debug.yml
+  when: debug_mode
+  tags: users_debug
+
+- include: add_new_users.yml
+
+- name: Keeping consistency on system's user SSH keys
+  authorized_key: user={{ ansible_ssh_user }} key="{{ root_pubkey }}" exclusive=yes
+  when:  ('bastion' not in inventory_hostname)
+
+# - name: Add ubuntu key to bastion host
+#   sudo: yes
+#   authorized_key: user={{ ansible_ssh_user }} key="from=\"{{ authorized_ips | join(',') }}\" {{ops_key}} " exclusive=yes
+#   when:  ('bastion' in inventory_hostname)
+#   tags:
+#     - bastion
+
+- name: Deploy sudores file
+  template: src=cl-sudoers-groups.j2 dest=/etc/sudoers.d/cl-sudo-groups mode=0440
+  tags: sudoers
+
+- include: delete_old_users.yml
+  tags: delete

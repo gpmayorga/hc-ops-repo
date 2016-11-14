@@ -34,3 +34,9 @@ nextcloud_database_password: WELzrNCjUuwhGijQt2s1
 
 nextcloud_web_user: "{{ webserver_user }}"
 nginx_root_directory: /var/www
+
+additional_apps:
+  - "https://github.com/nextcloud/calendar/releases/download/v1.4.0/calendar.tar.gz"
+  #- "https://apps.owncloud.com/CONTENT/content-files/174727-richdocuments.zip"
+  - "https://github.com/owncloud/contacts/releases/download/v1.4.0.0/contacts.tar.gz"
+  - "https://apps.owncloud.com/CONTENT/content-files/164356-tasks.zip"

@@ -1,0 +1,20 @@
+---
+#
+# - debug: var=local_users
+#
+# - debug: var=use_groups
+
+- debug: msg="Creating user {{item.key}} with groups {{item.value.groups}}"
+  with_dict: "{{ users }}"
+  when: (item.value.server_group | intersect (group_names) | length > 0 or 'all' in item.value.server_group and (local_users.stdout.find(item.key)==-1))
+
+
+# - debug: msg="Inserting {{item.ssh_key}}"
+#   with_items: users
+#   when: ("{{env}}" in {{item.value.env}}) or {{item.value.env}}==['all']
+#   tags: debug
+
+- debug: msg="{{item.key}} found, it will be deleted because {{ item.value.server_group }} is not in {{ group_names }} or 'all'"
+  with_dict: "{{ users }}"
+  #when user has been found, and no common groups between server and user_server_group or user_server_group != all
+  when:  local_users.stdout.find(item.key)==-1 and item.value.server_group | intersect (group_names) | length == 0 and 'all' not in item.value.server_group

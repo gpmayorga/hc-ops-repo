@@ -1,0 +1,8 @@
+
+- hosts: nextcloud-aio
+  tasks:
+
+    - debug: msg="{{ additional_apps[0].split('/')[-1] }}"
+      # with_items: additional_apps
+    #
+    # - debug: msg="/tmp/{{ additional_apps.split('/')[additional_apps |length] }}"

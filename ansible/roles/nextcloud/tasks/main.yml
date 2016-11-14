@@ -1,7 +1,6 @@
 ---
 
 - include: check_installation.yml
-
 - include: installation/download.yml
 - include: installation/directories.yml
 - include: installation/cron.yml
@@ -21,6 +20,7 @@
   when: "nextcloud_installed == true and nextcloud_installed_version != nextcloud_version"
 
 - include: installation/apps.yml
-
+  tags: nextcloud_apps
+  
 - include: selinux.yml
   when: ansible_os_family == 'RedHat'

@@ -31,3 +31,16 @@
   with_together:
     - "{{ nextcloud_apps }}"
     - "{{ nextcloud_apps_status.results }}"
+
+- name: download additional apps
+  get_url:
+    dest: /tmp/
+    url: "{{ item }}"
+  with_items: "{{ additional_apps }}"
+
+- name: install additional apps
+  unarchive:
+    dest: "{{ nextcloud_root_directory }}/apps-store/"
+    src: "/tmp/{{ item.split('/')[-1] }}"
+    copy: no
+  with_items: "{{ additional_apps }}"

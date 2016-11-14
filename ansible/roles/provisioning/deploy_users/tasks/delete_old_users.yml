@@ -1,0 +1,25 @@
+
+# Delete users in the user list that don't belong to this environment
+
+- name: Make sure users not listed for this env are removed.
+  user: name={{item.key}} state=absent remove=yes
+  with_dict: "{{users}}"
+  when: local_users.stdout.find(item.key)==-1 and item.value.server_group | intersect (group_names) | length == 0 and 'all' not in item.value.server_group
+
+- name: Remove home directory
+  file: state=absent dest=/home/{{item.key}}
+  with_dict: "{{users}}"
+  when: local_users.stdout.find(item.key)==-1 and item.value.server_group | intersect (group_names) | length == 0 and 'all' not in item.value.server_group
+
+## Delete other users present in the machine that are not in the users list
+
+- name: Remove any other users not present at all in the list
+  user: name={{item}} state=absent remove=yes
+  with_items: local_users.stdout_lines
+  when: (item not in users) and (item not in system_users)
+  tags: debug
+
+- name: Remove home directory
+  file: state=absent dest=/home/{{item}}
+  with_items: local_users.stdout_lines
+  when: (item not in users) and (item not in system_users)

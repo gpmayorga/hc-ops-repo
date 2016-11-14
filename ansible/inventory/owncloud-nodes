@@ -5,3 +5,4 @@ portal.hispacloud.me ansible_user=centos
 
 [nextcloud-aio]
 nextcloud-vagrant  ansible_ssh_host=10.0.0.10 ansible_ssh_private_key_file='/home/guille/repos/ops/.vagrant/machines/vmtest/libvirt/private_key'  ansible_ssh_user=vagrant
+nextcloud.hispacloud.me ansible_ssh_host=212.231.131.155 ansible_user=centos

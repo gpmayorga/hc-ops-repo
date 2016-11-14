@@ -1,0 +1,3 @@
+ssl_certs_generate_self_signed: yes
+external_fqdn: 'nextcloud.hispacloud.me'
+data_mount_point: "{{ nextcloud_data_directory }}"

@@ -1,0 +1,21 @@
+---
+# It will only run for users not already created
+
+- name: Creating users for given environment
+  user: name={{ item.key }} groups={{item.value.groups|join(',')}} append=yes shell=/bin/bash
+  with_dict: "{{users}}"
+  register: user_changed
+  when: local_users.stdout.find(item.key)==-1 and item.value.server_group | intersect (group_names) | length > 0 and 'all' in item.value.server_group
+
+# It always runs, in case SSH key has been updated.
+
+- name: Adding SSH key for given users
+  authorized_key: user={{item.key}} key="{{item.value.ssh_key}}"
+  with_dict: "{{users}}"
+  when: item.value.server_group | intersect (group_names) | length > 0 and 'all' in item.value.server_group
+
+#
+# - name: fix home folder permissions for new users
+#   file: path=/home/"{{item.key}}"/ owner={{item.key}} group={{item.key}} recurse=yes state=directory
+#   with_dict: "{{users}}"
+#   when: ( item.value.server_group in group_names or 'all' in item.value.server_group) and (local_users.stdout.find(item.key)==-1)
