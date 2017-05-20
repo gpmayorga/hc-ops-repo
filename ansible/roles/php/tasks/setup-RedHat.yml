@@ -1,7 +1,7 @@
 ---
 
 - name: Install additional repos (CentOS)
-  yum: name={{ item.url }} state=present
+  package: name={{ item.url }} state=present
   with_items: "{{ additional_repos }}"
 
 - name: Disable additional repos enabled by default
@@ -9,7 +9,7 @@
   with_items: "{{ additional_repos }}"
 
 - name: Ensure officially available PHP packages are installed.
-  yum:
+  package:
     name: "{{ item }}"
     state: installed
   with_items: "{{ php_packages }}"
@@ -17,7 +17,7 @@
   tags: install-php
 
 - name: Install other packages from external repos
-  yum:
+  package:
     name: "{{ item.name }}"
     state: installed
     enablerepo: "{{ item.repo }}"

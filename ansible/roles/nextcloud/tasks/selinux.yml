@@ -1,7 +1,7 @@
 ---
 - name: Install selinux python module
   become: yes
-  yum: name=policycoreutils-python  state=latest
+  package: name=policycoreutils-python  state=latest
   tags: selinux
   
 - name: add nextcloud selinux policies

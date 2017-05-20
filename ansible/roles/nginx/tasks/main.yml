@@ -6,7 +6,7 @@
   tags: nginx.install
 
 - name: install nginx
-  yum: pkg=nginx update_cache=yes state=latest enablerepo=nginx
+  package: pkg=nginx update_cache=yes state=latest enablerepo=nginx
   tags: nginx.install
 
 - name: enable nginx

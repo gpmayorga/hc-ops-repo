@@ -1,6 +1,6 @@
 ---
 - name: Ensure dependencies for building from source are installed (RedHat).
-  yum: "pkg={{ item }} state=installed"
+  package: "pkg={{ item }} state=installed"
   with_items:
     - recode-devel
     - aspell-devel

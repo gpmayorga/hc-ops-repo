@@ -2,7 +2,7 @@
 ---
 
   - name: Install LVM support
-    yum: name=lvm2 update_cache=yes state=latest
+    package: name=lvm2 update_cache=yes state=latest
     
 
   - name: checking if VG exists
