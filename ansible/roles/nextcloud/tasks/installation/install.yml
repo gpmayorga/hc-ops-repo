@@ -1,8 +1,0 @@
----
-- name: ensure nextcloud installation is done
-  command: "php occ maintenance:install --database '{{ nextcloud_database_server }}' --database-name '{{ nextcloud_database_name }}'  --database-user '{{ nextcloud_database_username }}' --database-pass '{{ nextcloud_database_password }}' --admin-user '{{ nextcloud_admin_username }}' --admin-pass '{{ nextcloud_admin_password }}' --data-dir '{{ nextcloud_data_directory }}'"
-  args:
-    chdir: "{{ nextcloud_root_directory }}"
-  become: yes
-  ignore_errors: yes
-  become_user: "{{ nextcloud_web_user }}"

@@ -1,7 +1,0 @@
----
-- name: ensure nextcloud is upgraded
-  command: "php occ upgrade"
-  args:
-    chdir: "{{ nextcloud_root_directory }}"
-  become: yes
-  become_user: "{{ nextcloud_web_user }}"

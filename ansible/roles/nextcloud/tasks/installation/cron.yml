@@ -1,8 +1,0 @@
----
-- name: ensure nextcloud cron job is installed
-  cron:
-    name: "nextcloud cron"
-    cron_file: nextcloud
-    user: "{{ nextcloud_web_user }}"
-    minute: "*/15"
-    job: "php -f {{ nextcloud_root_directory }}/cron.php"

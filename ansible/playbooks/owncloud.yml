@@ -8,17 +8,17 @@
     - provisioning/deploy_users
     - provisioning/sysconfig
 
+- hosts: mysql
+  become: yes
+  become_user: root
+  roles:
+    - mariadb
+
 - hosts: owncloud
   become: yes
   become_user: root
   roles:
     - nginx
     - php
-    - ssl-certs
-    - { role: owncloud_old, tags: owncloud }
-
-- hosts: mysql
-  become: yes
-  become_user: root
-  roles:
-    - mariadb
+    #- { role: ssl-certs, tags: ssl}
+    - { role: owncloud, tags: owncloud }

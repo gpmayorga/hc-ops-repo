@@ -1,9 +1,11 @@
 ---
-mariadb_databases: [hispacloud,"{{owncloud_database_name}}"]
+mariadb_databases: ["{{owncloud_database_name}}"]
 mariadb_users:
   - name: "{{ owncloud_database_username }}"
     password: "{{ owncloud_database_password }}"
-    priv: 'owncloud.*:ALL'
+    priv: '{{ owncloud_database_name }}.*:ALL'
+    host: "10.0.0.%"
 
-mariadb_root_password: ef&od7pzm9q4eGRTrtPVf6m8nRE
+
+mariadb_root_password: C9cYPsyRgeR7eqqEcH
 mariadb_bind_address: '0.0.0.0/0'

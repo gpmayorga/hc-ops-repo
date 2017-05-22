@@ -1,0 +1,4 @@
+owncloud_database_name: hispacloud
+owncloud_database_username: hispacloud
+owncloud_database_password: ywxvw306beGb2EMCFl
+owncloud_database_host: '10.0.0.3'

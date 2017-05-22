@@ -1,0 +1,4 @@
+ssl_certs_generate_self_signed: no
+external_fqdn: 'portal.hispanube.es'
+data_mount_point: "{{ owncloud_data_directory }}"
+owncloud_database_host: '10.0.0.3'
