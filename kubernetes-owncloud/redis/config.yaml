@@ -2,3 +2,5 @@ resources:
   requests:
     memory: 512Mi
     cpu: 100m
+redisPassword: 8ElQjZZmY1
+# Ref: https://github.com/kubernetes/charts/tree/master/stable/redis
