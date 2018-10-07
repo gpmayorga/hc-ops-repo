@@ -18,7 +18,7 @@ owncloud_apps: []
 #  - name: newshttps://download.owncloud.org/community/owncloud-10.0.0.zip
 #  - enabled: true
 owncloud_tarball_url: "https://download.owncloud.org/community/"
-owncloud_version: owncloud-9.1.5
+owncloud_version: 9.1.5
 owncloud_tarball_checksum: "sha256:54a6b3fc9b3bceca63225119e1a3339596c637e4c4343e0b8038ad479ad26248"
 owncloud_tarball_extension: "zip"
 

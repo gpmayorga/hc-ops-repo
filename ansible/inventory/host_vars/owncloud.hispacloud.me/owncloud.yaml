@@ -22,8 +22,8 @@ owncloud_apps: []
 
 owncloud_data_directory: /var/www/owncloud/data
 
-owncloud_ssl_certificate: "/etc/letsencrypt/live/portal.hispanube.es/fullchain.pem"
-owncloud_ssl_certificate_key: "/etc/letsencrypt/live/portal.hispanube.es/privkey.pem"
+owncloud_ssl_certificate: "/etc/letsencrypt/live/{{ external_fqdn }}/fullchain.pem"
+owncloud_ssl_certificate_key: "/etc/letsencrypt/live/{{ external_fqdn }}/privkey.pem"
 
 owncloud_root_directory: /var/www/owncloud
 owncloud_database_server: mysql # mysql, sqlite, manual

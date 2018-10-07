@@ -9,7 +9,7 @@
 
 - name: download owncloud/nextcloud
   get_url:
-    url: "{{ owncloud_tarball_url }}/{{ owncloud_version }}.{{ owncloud_tarball_extension }}"
+    url: "{{ owncloud_tarball_url }}/owncloud-{{ owncloud_version }}.{{ owncloud_tarball_extension }}"
     dest: "/tmp/owncloud_tarball.{{ owncloud_tarball_extension }}"
     checksum: "{{ owncloud_tarball_checksum | default(None) }}"
 
@@ -18,5 +18,5 @@
     src: "/tmp/owncloud_tarball.{{ owncloud_tarball_extension }}"
     dest: "{{ nginx_root_directory }}"
     copy: no
-  when: "owncloud_installed != true or owncloud_installed_version != owncloud_version"
+  when: "owncloud_installed == false or owncloud_installed_version != owncloud_version"
   register: owncloud_download

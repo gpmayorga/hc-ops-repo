@@ -1,0 +1,78 @@
+{
+	"variables": {
+		"name": "nextcloud-community",
+		"build_name": "nextcloud-community",
+		"disk_size": "20000",
+		"headless": "true",
+    "aws_access_key": "",
+    "aws_secret_key": ""
+	},
+	"push": {
+		"name": "{{user `name`}}",
+		"exclude": [
+			".git",
+			"packer_cache",
+			"output*-production",
+			"*.box"
+		]
+	},
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "us-east-1",
+    "source_ami_filter": {
+      "filters": {
+      "virtualization-type": "hvm",
+      "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+      "root-device-type": "ebs"
+      },
+      "owners": ["099720109477"],
+      "most_recent": true
+    },
+    "instance_type": "t2.micro",
+    "ssh_username": "ubuntu",
+    "ami_name": "nexthispacloud 2.0 {{timestamp}}"
+  }],
+	"provisioners": [{
+			"type": "shell",
+			"inline": ["sleep 10"]
+		},
+		{
+			"execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+			"script": "scripts/packages.sh",
+			"type": "shell"
+		},
+		{
+			"execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+			"script": "scripts/vagrant.sh",
+			"type": "shell"
+		},
+		{
+			"type": "shell",
+			"inline": [
+				"wget https://raw.githubusercontent.com/enoch85/scripts/master/packer/nextcloud/add_ncadmin.sh -P /tmp",
+				"bash /tmp/add_ncadmin.sh",
+				"wget https://raw.githubusercontent.com/nextcloud/vm/master/nextcloud_install_production.sh -P /tmp",
+				"sudo chown ncadmin:ncadmin /tmp/nextcloud_install_production.sh"
+			]
+		},
+                {
+                        "execute_command": "echo 'ncadmin' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+                        "script": "scripts/install.sh",
+                        "type": "shell"
+                },
+		{
+			"type": "shell",
+			"pause_before": "10s",
+			"inline": [
+				"sudo rm -f /tmp/*.sh"
+			]
+		}
+	],
+	"post-processors": [{
+		"type": "compress",
+		"output": "{{.BuildName}}-vm.zip",
+		"compression_level": 3
+	}]
+}

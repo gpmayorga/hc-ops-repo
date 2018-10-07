@@ -13,6 +13,7 @@
   become_user: root
   roles:
     - mariadb
+  tags: mariadb
 
 - hosts: owncloud
   become: yes

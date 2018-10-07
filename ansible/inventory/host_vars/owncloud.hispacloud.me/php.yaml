@@ -25,8 +25,8 @@ external_packages:
   - { name: certbot, repo: epel }
   - { name: php-mcrypt, repo: epel }
   - { name: php-imagick, repo: remi }
-  - { name: php-mbstream, repo: epel }
-
+  - { name: php-mbstring, repo: epel }
+  
 # Set this to false if you're not using PHP with Apache/Nginx/etc.
 php_enable_webserver: true
 
